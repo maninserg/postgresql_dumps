@@ -30,7 +30,7 @@ CREATE TABLE photos (
 	image_url VARCHAR(255) NOT NULL,
 	user_id INTEGER NOT NULL,
 	created_at TIMESTAMP DEFAULT NOW(),
-	FOREIGN KEY (user_id) REFERENCES users(id)
+	CONSTRAINT FK_photos_user_id FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE comments (
@@ -39,24 +39,24 @@ CREATE TABLE comments (
 	user_id INTEGER NOT NULL,
 	photo_id INTEGER NOT NULL,
 	created_at TIMESTAMP DEFAULT NOW(),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (photo_id) REFERENCES photos(id)
+	CONSTRAINT FK_comments_user_id FOREIGN KEY (user_id) REFERENCES users(id),
+	CONSTRAINT FK_comments_photo_id FOREIGN KEY (photo_id) REFERENCES photos(id)
 );
 
 CREATE TABLE likes (
 	user_id INTEGER NOT NULL,
 	photo_id INTEGER NOT NULL,
 	created_at TIMESTAMP DEFAULT NOW(),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (photo_id) REFERENCES photos(id)
+	CONSTRAINT FK_likes_user_id FOREIGN KEY (user_id) REFERENCES users(id),
+	CONSTRAINT FK_likes_photo_id FOREIGN KEY (photo_id) REFERENCES photos(id)
 );
 
 CREATE TABLE follows (
 	follower_id INTEGER NOT NULL,
 	followee_id INTEGER NOT NULL,
 	created_at TIMESTAMP DEFAULT NOW(),
-	FOREIGN KEY (follower_id) REFERENCES users(id),
-    FOREIGN KEY (followee_id) REFERENCES users(id),
+	CONSTRAINT FK_follewer_id FOREIGN KEY (follower_id) REFERENCES users(id),
+    CONSTRAINT FK_followee_id FOREIGN KEY (followee_id) REFERENCES users(id),
 	CONSTRAINT PK_follows PRIMARY KEY (follower_id, followee_id)
 );
 
@@ -69,7 +69,7 @@ CREATE TABLE tags (
 CREATE TABLE photo_tags (
 	photo_id INTEGER NOT NULL,
 	tag_id INTEGER NOT NULL,
-	FOREIGN KEY (photo_id) REFERENCES photos(id),
-	FOREIGN KEY (tag_id) REFERENCES tags(id),
+	CONSTRAINT FK_photo_tags_photo_id FOREIGN KEY (photo_id) REFERENCES photos(id),
+	CONSTRAINT FK_photo_tags_tag_id FOREIGN KEY (tag_id) REFERENCES tags(id),
 	CONSTRAINT PK_photo_tags PRIMARY KEY (photo_id, tag_id)
 );
