@@ -7,3 +7,8 @@
 **Description:** Different dumps from PostgreSQL
 
 <hr>
+
+<p align="center">
+  <img width = "250" src="screenshots/clone_instagram_database.jpg"/>
+<p align="center"><b>The diagram of clone_instagram_database.sql</b><p align="center">
+</p>
