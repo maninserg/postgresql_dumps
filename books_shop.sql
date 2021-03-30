@@ -35,6 +35,8 @@ CREATE TABLE books (
 	publisher_id int NOT NULL,
 	year_published int NOT NULL,
 	isbn varchar(13) NOT NULL,
+    unit_price numeric(6,2) NOT NULL,
+    units_in_stock int NOT NULL,
 	discontinued boolean NOT NULL,
     	created_at TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT fk_books_publisher_id FOREIGN KEY(publisher_id) REFERENCES publishers(id),
