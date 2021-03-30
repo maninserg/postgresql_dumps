@@ -8,7 +8,7 @@
 
 List of dumps:
   - clone_instagram_database.sql -- simplified clone of an instagram's database. There is a full logical copy of this datebase for MySQL in https://github.com/maninserg/mysql_dumps;
-  - books_shop.sql -- siplified database of a books shop; 
+  - books_shop.sql -- simplified database of a books shop; 
 
 <hr>
 
