@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS customers;
 CREATE TABLE publishers (
 	id serial PRIMARY KEY,
 	publisher_name varchar(255) NOT NULL,
-	CONSTRAINT unq_publisher_name UNIQUE(publisher_name)
+	CONSTRAINT unique_publisher_name UNIQUE(publisher_name)
 );
 
 CREATE TABLE books (
@@ -42,19 +42,20 @@ CREATE TABLE books (
 	CONSTRAINT fk_books_publisher_id FOREIGN KEY(publisher_id) REFERENCES publishers(id),
 	CONSTRAINT check_books_year_published CHECK(year_published BETWEEN 2000 AND date_part('year', created_at)),
 	CONSTRAINT check_books_isbn CHECK(isbn LIKE '__________' OR isbn LIKE '_____________'),
-	CONSTRAINT unq_book_name UNIQUE(book_name)
+	CONSTRAINT unique_book_name UNIQUE(book_name),
+    CONSTRAINT unique_isbn UNIQUE(isbn)
 );
 
 CREATE TABLE authors (
 	id serial PRIMARY KEY,
 	author_name varchar(255) NOT NULL,
-	CONSTRAINT unq_author_name UNIQUE(author_name)
+	CONSTRAINT unique_author_name UNIQUE(author_name)
 );
 
 CREATE TABLE categories (
 	id serial PRIMARY KEY,
 	category_name varchar(255) NOT NULL,
-	CONSTRAINT unq_category_name UNIQUE(category_name)
+	CONSTRAINT unique_category_name UNIQUE(category_name)
 );
 
 CREATE TABLE book_author (
@@ -77,7 +78,7 @@ CREATE TABLE customers (
 	id serial PRIMARY KEY,
 	user_name varchar(255),
 	created_at TIMESTAMP DEFAULT NOW(),
-	CONSTRAINT unq_user_name UNIQUE(user_name)
+	CONSTRAINT unique_user_name UNIQUE(user_name)
 );
 
 CREATE TABLE reviews (
@@ -88,7 +89,7 @@ CREATE TABLE reviews (
 	created_at TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT fk_reviews_customer_id FOREIGN KEY(customer_id) REFERENCES customers(id),
 	CONSTRAINT fk_reviews_book_id FOREIGN KEY(book_id) REFERENCES books(id),
-	CONSTRAINT unq_customer_book UNIQUE(customer_id, book_id)
+	CONSTRAINT unique_customer_book UNIQUE(customer_id, book_id)
 );
 
 CREATE TABLE carts (
